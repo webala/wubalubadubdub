@@ -1,0 +1,92 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Gurajada&display=swap');
+
+
+@font-face {
+     font-family: bakso;
+     src: url("./assets/fonts/bakso_sapi/BaksoSapi.otf");
+}
+
+:root {
+     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+     font-size: 16px;
+     line-height: 24px;
+     font-weight: 400;
+
+     color: rgba(255, 255, 255, 0.87);
+
+     font-synthesis: none;
+     text-rendering: optimizeLegibility;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     -webkit-text-size-adjust: 100%;
+}
+
+a {
+     font-weight: 500;
+     color: #646cff;
+     text-decoration: inherit;
+}
+a:hover {
+     color: #535bf2;
+}
+
+body {
+     margin: 0;
+     display: flex;
+     justify-content: center;
+     min-width: 320px;
+     min-height: 100vh;
+     background: url("./assets/backgrounds/background.jpg");
+     font-family: 'Gurajada', serif;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+}
+
+/* @media (min-width: 768px) {
+     body {
+          background: url("./assets/backgrounds/tablet.jpg");
+     }
+}
+
+@media (min-width: 1028px) {
+     body {
+          background: url("./assets/backgrounds/desktop.jpg");
+     }
+     body:after {
+          content: "";
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: rgba(0, 0, 0, 0.1);
+          pointer-events: none;
+     }
+} */
+
+h1 {
+     font-size: 3.2em;
+     line-height: 1.1;
+}
+
+button {
+     border-radius: 8px;
+     border: 1px solid transparent;
+     padding: 1px 20px;
+     font-size: 24px;
+     font-weight: 500;
+     font-family: inherit;
+     cursor: pointer;
+     transition: border-color 0.25s;
+     color: rgb(80, 160, 80);
+     height: 50px;
+}
+button:hover {
+     border-color: rgb(80, 160, 80);
+}
+button:focus,
+button:focus-visible {
+     outline: 4px auto -webkit-focus-ring-color;
+}

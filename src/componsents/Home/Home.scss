@@ -1,0 +1,53 @@
+/** @format */
+
+.home {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     padding: 5%;
+     margin-top: 30%;
+     .hero {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          h1 {
+               font-size: 34px;
+               color: rgb(80, 160, 80);
+               font-family: bakso;
+
+               @media (min-width: 768px) {
+                    font-size: 48px;
+               }
+          }
+
+          p {
+               text-align: center;
+               font-size: 28px;
+               color: black;
+
+               @media (min-width: 768px) {
+                    font-size: 37px;
+               }
+          }
+     }
+
+     .get-started {
+          margin: 100px 0;
+          button {
+               display: flex;
+               align-items: center;
+               gap: 10px;
+
+               .icon {
+                   transition: transform .2s ease-in;
+                   font-size: 14px;
+               }
+          }
+
+          button:hover {
+               .icon {
+                    transform: translateX(10px);
+               }
+          }
+     }
+}
