@@ -7,14 +7,14 @@ WUBALUBADUBDUB
 
 ## Screenshots
 
-`![Home](home.png)`
+![Home](home.png)
 `![Characters](characters.png)`
 `![Locations](locations.png)`
 `![Episodes](episodes.png)`
 
 
 ## Technologies
-I used `React`, `TypeScript`, `Sass`,.`Vite`
+I used `React`, `TypeScript`, `Sass`, `Vite`
 
 ## Setup
 - download or clone the repository
