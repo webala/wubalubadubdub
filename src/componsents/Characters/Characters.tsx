@@ -11,21 +11,21 @@ function Characters() {
      const [characters, setCharacters] = useState<object[]>();
      const [searchVal, setSearchVal] = useState<string>();
      const [errorMessage, setErrorMessage] = useState<string>();
-     const [isLoading, setIsLoading] = useState<boolean>(false)
+     const [isLoading, setIsLoading] = useState<boolean>(false);
 
      const fetchCharacters = async () => {
-          setIsLoading(true)
+          setIsLoading(true);
           const response = await fetch(
                "https://rickandmortyapi.com/api/character"
           );
           const jsonRes = await response.json();
           console.log(jsonRes.results);
           setCharacters(jsonRes.results);
-          setIsLoading(false)
+          setIsLoading(false);
      };
 
      const searchCharacter = async () => {
-          setIsLoading(true)
+          setIsLoading(true);
           if (searchVal) {
                const response = await fetch(
                     `https://rickandmortyapi.com/api/character/?name=${searchVal}`
@@ -35,7 +35,7 @@ function Characters() {
                setCharacters(jsonRes.results);
           } else {
           }
-          setIsLoading(false)
+          setIsLoading(false);
      };
 
      useEffect(() => {
@@ -43,9 +43,15 @@ function Characters() {
      }, []);
      return (
           <div className="characters">
-               <Navbar isLoading={isLoading}/>
+               <Navbar isLoading={isLoading} />
                <h1>Browse your favourite characters.</h1>
-               <form action="#">
+               <form
+                    action="#"
+                    onSubmit={(e) => {
+                         e.preventDefault();
+                         searchCharacter();
+                    }}
+               >
                     <h3>Find a character</h3>
                     <div className="field">
                          <p className="error-message">{errorMessage}</p>
