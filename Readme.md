@@ -1,9 +1,9 @@
-# Project Title
-WUBALUBADUBDUB
+# WUBALUBADUBDUB
+
 
 
 ## About The App
-[Wubalubadubdub] is an app that you can use to browse characters, epispdes and different planets that exist in the famous adult TV show Rick And Morty.
+Wubalubadubdub is an app that you can use to browse characters, epispdes and different locations that exist in the famous adult TV show Rick And Morty. The weird project name is a peculiar catch phrase that Rick Sanchez, the main character occasionally utters in the show.
 
 ## Screenshots
 
@@ -14,7 +14,7 @@ WUBALUBADUBDUB
 
 
 ## Technologies
-I used `React`, `TypeScript`, `Sass`, `Vite`
+I used `React`, `TypeScript`, `Sass`, `Vite`, `ChakraUI`
 
 ## Setup
 - download or clone the repository
@@ -24,7 +24,7 @@ I used `React`, `TypeScript`, `Sass`, `Vite`
 
 
 ## Status
-[Wubalubadubdub] is still in progress. `Version 2` will be out soon.
+Wubalubadubdub is still in progress. `Version 2` will be out soon.
 
 
 
