@@ -8,9 +8,9 @@ WUBALUBADUBDUB
 ## Screenshots
 
 ![Home](home.png)
-`![Characters](characters.png)`
-`![Locations](locations.png)`
-`![Episodes](episodes.png)`
+![Characters](characters.png)
+![Locations](locations.png)
+![Episodes](episodes.png)
 
 
 ## Technologies
