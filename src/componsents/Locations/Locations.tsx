@@ -40,7 +40,9 @@ function Locations() {
         <div className="locations">
            <Navbar isLoading={isLoading} />
            <h1>Browse locations.</h1>
-           <form action="#">
+           <form action="#" onSubmit={(e: React.SyntheticEvent) => {
+               e.preventDefault()
+               searchLocation()}}>
               <h3>Find a location</h3>
               <div className="field">
                  <p className="error-message">{errorMessage}</p>
