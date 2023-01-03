@@ -8,7 +8,7 @@ import "./Characters.scss";
 import Navbar from "../Navbar/Navbar";
 
 function Characters() {
-     const [characters, setCharacters] = useState<object[]>();
+     const [characters, setCharacters] = useState<iCharacter[]>();
      const [searchVal, setSearchVal] = useState<string>();
      const [errorMessage, setErrorMessage] = useState<string>();
      const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -78,7 +78,7 @@ function Characters() {
 
                <div className="characters-list">
                     {characters?.map((character: iCharacter, index: number) => (
-                         <Character character={character} index={index} />
+                         <Character character={character} key={index} />
                     ))}
                </div>
           </div>

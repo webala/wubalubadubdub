@@ -13,7 +13,7 @@ export interface iEpisode {
 }
 
 interface iEpisodeProps {
-     episodes: iEpisode;
+     episode: iEpisode;
 }
 
 function Episode({ episode }: iEpisodeProps) {

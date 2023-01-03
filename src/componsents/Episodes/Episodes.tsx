@@ -5,7 +5,8 @@ import "./Episodes.scss"
 
 function Episodes() {
 
-     const [episodes, setEpisodes] = useState<object[]>()
+     const [episodes, setEpisodes] = useState<iEpisode[]>()
+     const [isLoading, setIsLoading] = useState<boolean>(false)
 
      const fetchEpisodes = async () => {
           const response = await fetch(
@@ -21,11 +22,11 @@ function Episodes() {
      }, [])
   return (
        <div className='episodes'>
-          <Navbar />
+          <Navbar isLoading={isLoading}/>
             <h1>Episodes</h1>
             <div className="episodes-list">
                  {episodes?.map((episode: iEpisode, index: number) => (
-                      <Episode episode={episode} index={index} />
+                      <Episode episode={episode} key={index} />
                  ))}
             </div>
        </div>

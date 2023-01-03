@@ -1,6 +1,16 @@
 import React, {useState} from 'react'
 import './Character.scss'
 
+interface iOrigin {
+     name: string;
+     url: string;
+}
+
+interface iLocation {
+   name: string;
+   url: string;
+}
+
 export interface iCharacter {
      name: string;
      created: string;
@@ -9,8 +19,8 @@ export interface iCharacter {
      gender: string;
      id: number;
      image: string;
-     location: object;
-     origin: object;
+     location: iLocation;
+     origin: iOrigin;
      species: string;
 }
 

@@ -9,7 +9,8 @@ import "./Locations.scss";
 function Locations() {
      const [errorMessage, setErrorMessage] = useState<string>();
      const [searchVal, setSearchVal] = useState<string>();
-     const [locations, setLocations] = useState<object[]>();
+     const [locations, setLocations] = useState<iLocation[]>();
+     const [isLoading, setIsLoading] = useState<boolean>(false);
 
      const searchLocation = async () => {
           if (searchVal) {
@@ -36,40 +37,38 @@ function Locations() {
           fetchLocations();
      }, []);
      return (
-          <div className="locations">
-               <Navbar />
-               <h1>Browse locations.</h1>
-               <form action="#">
-                    <h3>Find a location</h3>
-                    <div className="field">
-                         <p className="error-message">{errorMessage}</p>
-                         <label htmlFor="character-name">Location Name</label>
+        <div className="locations">
+           <Navbar isLoading={isLoading} />
+           <h1>Browse locations.</h1>
+           <form action="#">
+              <h3>Find a location</h3>
+              <div className="field">
+                 <p className="error-message">{errorMessage}</p>
+                 <label htmlFor="character-name">Location Name</label>
 
-                         <div className="search">
-                              <input
-                                   type="text"
-                                   name="character-name"
-                                   id="character-name"
-                                   placeholder="Enter a location"
-                                   onChange={(e) =>
-                                        setSearchVal(e.target.value)
-                                   }
-                              />
+                 <div className="search">
+                    <input
+                       type="text"
+                       name="character-name"
+                       id="character-name"
+                       placeholder="Enter a location"
+                       onChange={(e) => setSearchVal(e.target.value)}
+                    />
 
-                              <BiSearchAlt
-                                   className="search-btn"
-                                   onClick={searchLocation}
-                              />
-                         </div>
-                    </div>
-               </form>
+                    <BiSearchAlt
+                       className="search-btn"
+                       onClick={searchLocation}
+                    />
+                 </div>
+              </div>
+           </form>
 
-               <div className="locations-list">
-                    {locations?.map((location: iLocation, index: number) => (
-                         <Location location={location} index={index} />
-                    ))}
-               </div>
-          </div>
+           <div className="locations-list">
+              {locations?.map((location: iLocation, index: number) => (
+                 <Location location={location} key={index} />
+              ))}
+           </div>
+        </div>
      );
 }
 
