@@ -4,29 +4,37 @@
      display: flex;
      flex-direction: column;
      align-items: center;
-     padding: 5%;
-     margin-top: 30%;
+     padding-top: 30%;
+     background: url("../../assets/backgrounds/background.jpg");
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+     height: 100vh;
+     width: 100vw;
+
      .hero {
           display: flex;
           flex-direction: column;
           align-items: center;
           h1 {
-               font-size: 34px;
+               font-size: 28px;
                color: rgb(80, 160, 80);
                font-family: bakso;
+               margin-bottom: 20px;
 
                @media (min-width: 768px) {
-                    font-size: 48px;
+                    font-size: 36px;
                }
           }
 
           p {
                text-align: center;
-               font-size: 28px;
+               font-size: 19px;
                color: black;
+               font-weight: 700;
 
                @media (min-width: 768px) {
-                    font-size: 37px;
+                    font-size: 24px;
                }
           }
      }
@@ -37,6 +45,9 @@
                display: flex;
                align-items: center;
                gap: 10px;
+               border: 1px solid greenyellow;
+               padding: 5px 20px;
+               transition: transform .2s ease-in;
 
                .icon {
                    transition: transform .2s ease-in;
@@ -45,6 +56,7 @@
           }
 
           button:hover {
+               transform: scale(1.1);
                .icon {
                     transform: translateX(10px);
                }

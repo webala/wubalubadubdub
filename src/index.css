@@ -39,11 +39,8 @@ body {
      justify-content: center;
      min-width: 320px;
      min-height: 100vh;
-     background: url("./assets/backgrounds/background.jpg");
      font-family: 'Gurajada', serif;
-     background-repeat: no-repeat;
-     background-position: center;
-     background-size: cover;
+     
 }
 
 /* @media (min-width: 768px) {
