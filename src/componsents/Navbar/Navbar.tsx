@@ -46,7 +46,7 @@ function Navbar({isLoading}: iNavProps) {
               )}
            </div>
 
-           {/* {isLoading && <Progress colorScheme={`teal`} size="xs" isIndeterminate />} */}
+           {isLoading && <Progress colorScheme={`teal`} size="xs" isIndeterminate />}
         </div>
      );
 }
