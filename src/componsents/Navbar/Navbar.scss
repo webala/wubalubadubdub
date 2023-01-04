@@ -6,14 +6,16 @@
      width: 100%;
      position: relative;
 
+     @media (min-width: 768px) {
+          padding: 40px 30px;
+     }
+
      // border-bottom: 1px solid greenyellow;
      h1 {
           color: greenyellow;
           font-size: 24px;
 
-          @media (min-width: 768px) {
-               font-size: 46px;
-          }
+          
      }
 
      .nav-items {
@@ -22,14 +24,19 @@
                font-size: 16px;
                color: rgb(48, 43, 43);
                transition: color .3s ease-in;
-
-               @media (min-width: 768px) {
-                    font-size: 36px;
-               }
           }
 
           .link:hover {
                color: greenyellow;
+          }
+
+          @media (min-width: 768px) {
+               display: flex;
+               gap: 20px;
+
+               .link {
+                    font-size: 19px;
+               }
           }
      }
 
@@ -46,6 +53,10 @@
      }
 
      .menu {
+
+          @media (min-width: 768px) {
+               display: none;
+          }
           .icon {
                font-size: 24px;
                color: greenyellow;
