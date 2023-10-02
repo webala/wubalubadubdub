@@ -1,22 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /** @format */
-@import url('https://fonts.googleapis.com/css2?family=Gurajada&display=swap');
-
-
 @font-face {
      font-family: bakso;
      src: url("./assets/fonts/bakso_sapi/BaksoSapi.otf");
 }
 
+/* @font-face {
+     font-family: almond;
+     src: url("./assets/fonts/almond_nougat/Almond\ Nougat.otf");
+} */
+
 * {
-     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
      font-size: 16px;
      line-height: 24px;
      font-weight: 400;
      padding: 0;
      margin: 0;
-
      color: rgba(255, 255, 255, 0.87);
-
      font-synthesis: none;
      text-rendering: optimizeLegibility;
      -webkit-font-smoothing: antialiased;
@@ -39,8 +43,7 @@ body {
      justify-content: center;
      min-width: 320px;
      min-height: 100vh;
-     font-family: 'Gurajada', serif;
-     
+     font-family: almond !important;
 }
 
 /* @media (min-width: 768px) {

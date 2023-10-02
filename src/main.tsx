@@ -7,7 +7,6 @@ import Home from './componsents/Home/Home';
 import Characters from './componsents/Characters/Characters';
 import Locations from './componsents/Locations/Locations';
 import Episodes from './componsents/Episodes/Episodes';
-import {ChakraProvider} from "@chakra-ui/react"
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 
@@ -35,9 +34,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
    <React.StrictMode>
       <QueryClientProvider client={query}>
-         <ChakraProvider>
+         
             <RouterProvider router={router} />
-         </ChakraProvider>
+         
       </QueryClientProvider>
    </React.StrictMode>
 );

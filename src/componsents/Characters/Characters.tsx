@@ -6,41 +6,41 @@ import { iCharacter } from "../Character/Character";
 import { BiSearchAlt } from "react-icons/bi";
 import "./Characters.scss";
 import Navbar from "../Navbar/Navbar";
+import { useQuery } from "react-query";
+import axios from "axios";
+import useDebouce from "../../hooks/useDebounce";
 
 function Characters() {
-     const [characters, setCharacters] = useState<iCharacter[]>();
      const [searchVal, setSearchVal] = useState<string>();
      const [errorMessage, setErrorMessage] = useState<string>();
-     const [isLoading, setIsLoading] = useState<boolean>(false);
+     // const [isLoading, setIsLoading] = useState<boolean>(false);
 
-     const fetchCharacters = async () => {
-          setIsLoading(true);
-          const response = await fetch(
-               "https://rickandmortyapi.com/api/character"
-          );
-          const jsonRes = await response.json();
-          console.log(jsonRes.results);
-          setCharacters(jsonRes.results);
-          setIsLoading(false);
-     };
-
-     const searchCharacter = async () => {
-          setIsLoading(true);
+     const fetchCharacters = async (searchVal?: string) => {
+          let endpoint;
           if (searchVal) {
-               const response = await fetch(
-                    `https://rickandmortyapi.com/api/character/?name=${searchVal}`
-               );
-               const jsonRes = await response.json();
-               console.log(jsonRes.results);
-               setCharacters(jsonRes.results);
+               endpoint = `https://rickandmortyapi.com/api/character/?name=${searchVal}`
           } else {
+               endpoint = "https://rickandmortyapi.com/api/character"
           }
-          setIsLoading(false);
+          const response = await axios(
+               endpoint
+          );
+          return response.data;          
      };
+
+     const value = useDebouce(searchVal);
+
+     const {data, isLoading, isSuccess, isError} = useQuery(['characters', value], () => fetchCharacters(value))
 
      useEffect(() => {
-          fetchCharacters();
-     }, []);
+     }, [value]);
+     if (isLoading) {
+          return <p>Loading</p>
+     }
+     if (isError) {
+          return <p>Error</p>
+     }
+     console.log(data)
      return (
           <div className="characters">
                <Navbar isLoading={isLoading} />
@@ -49,7 +49,6 @@ function Characters() {
                     action="#"
                     onSubmit={(e) => {
                          e.preventDefault();
-                         searchCharacter();
                     }}
                >
                     <h3>Find a character</h3>
@@ -70,17 +69,16 @@ function Characters() {
 
                               <BiSearchAlt
                                    className="search-btn"
-                                   onClick={searchCharacter}
                               />
                          </div>
                     </div>
                </form>
-
-               <div className="characters-list">
-                    {characters?.map((character: iCharacter, index: number) => (
+               {isLoading && <p>Loading</p>}
+               {isSuccess && <div className="characters-list">
+                    {data?.results.map((character: iCharacter, index: number) => (
                          <Character character={character} key={index} />
                     ))}
-               </div>
+               </div>}
           </div>
      );
 }

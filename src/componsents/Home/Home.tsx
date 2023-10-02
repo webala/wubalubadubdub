@@ -7,7 +7,7 @@ function Home() {
   return (
        <div className="home">
             <div className="hero">
-                 <h1>wubalubadubdub!</h1>
+                 <h1 className='text-black'>wubalubadubdub!</h1>
                  <p>Browse Rick And Morty Characters, Locations and Episodes</p>
             </div>
 

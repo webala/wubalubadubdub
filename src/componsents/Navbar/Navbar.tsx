@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
-import { Progress } from "@chakra-ui/react";
 import {AiOutlineMenuFold, AiOutlineMenuUnfold} from 'react-icons/ai'
 
 interface iNavProps {
@@ -46,7 +45,7 @@ function Navbar({isLoading}: iNavProps) {
               )}
            </div>
 
-           {isLoading && <Progress colorScheme={`teal`} size="xs" isIndeterminate />}
+           {/* {isLoading && <Progress />} */}
         </div>
      );
 }
