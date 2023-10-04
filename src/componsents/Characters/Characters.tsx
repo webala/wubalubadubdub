@@ -43,36 +43,8 @@ function Characters() {
      console.log(data)
      return (
           <div className="characters">
-               <Navbar isLoading={isLoading} />
                <h1>Browse your favourite characters.</h1>
-               <form
-                    action="#"
-                    onSubmit={(e) => {
-                         e.preventDefault();
-                    }}
-               >
-                    <h3>Find a character</h3>
-                    <div className="field">
-                         <p className="error-message">{errorMessage}</p>
-                         <label htmlFor="character-name">Character Name</label>
-
-                         <div className="search">
-                              <input
-                                   type="text"
-                                   name="character-name"
-                                   id="character-name"
-                                   placeholder="Enter a character name"
-                                   onChange={(e) =>
-                                        setSearchVal(e.target.value)
-                                   }
-                              />
-
-                              <BiSearchAlt
-                                   className="search-btn"
-                              />
-                         </div>
-                    </div>
-               </form>
+               
                {isLoading && <p>Loading</p>}
                {isSuccess && <div className="characters-list">
                     {data?.results.map((character: iCharacter, index: number) => (

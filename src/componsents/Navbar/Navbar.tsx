@@ -5,11 +5,9 @@ import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import {AiOutlineMenuFold, AiOutlineMenuUnfold} from 'react-icons/ai'
 
-interface iNavProps {
-     isLoading: boolean;
-}
 
-function Navbar({isLoading}: iNavProps) {
+
+function Navbar() {
 
      const [isActive, setIsActive] = useState<boolean>(false)
      return (

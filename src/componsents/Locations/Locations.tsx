@@ -38,33 +38,8 @@ function Locations() {
      }, []);
      return (
         <div className="locations">
-           <Navbar isLoading={isLoading} />
            <h1>Browse locations.</h1>
-           <form action="#" onSubmit={(e: React.SyntheticEvent) => {
-               e.preventDefault()
-               searchLocation()}}>
-              <h3>Find a location</h3>
-              <div className="field">
-                 <p className="error-message">{errorMessage}</p>
-                 <label htmlFor="character-name">Location Name</label>
-
-                 <div className="search">
-                    <input
-                       type="text"
-                       name="character-name"
-                       id="character-name"
-                       placeholder="Enter a location"
-                       onChange={(e) => setSearchVal(e.target.value)}
-                    />
-
-                    <BiSearchAlt
-                       className="search-btn"
-                       onClick={searchLocation}
-                    />
-                 </div>
-              </div>
-           </form>
-
+           
            <div className="locations-list">
               {locations?.map((location: iLocation, index: number) => (
                  <Location location={location} key={index} />

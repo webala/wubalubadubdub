@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Episode, { iEpisode } from '../Episode/Episode';
-import Navbar from '../Navbar/Navbar';
 import "./Episodes.scss"
 
 function Episodes() {
@@ -22,7 +21,6 @@ function Episodes() {
      }, [])
   return (
        <div className='episodes'>
-          <Navbar isLoading={isLoading}/>
             <h1>Episodes</h1>
             <div className="episodes-list">
                  {episodes?.map((episode: iEpisode, index: number) => (
