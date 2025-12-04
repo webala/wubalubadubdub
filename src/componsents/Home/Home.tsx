@@ -1,16 +1,9 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
-import { MdLocalMovies, MdPeople, MdLocationOn } from "react-icons/md";
-import {
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaTwitter, FaLinkedin } from "react-icons/fa";
 import axios from "axios";
 import { MapPin, Tv, UsersRound } from "lucide-react";
 
@@ -170,10 +163,10 @@ function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      {/* <footer className="footer">
         <div className="footer-content">
           <div className="footer-column">
-            <h4>WINDOW</h4>
+            <h4 className="bangers-regular">site map</h4>
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -190,7 +183,7 @@ function Home() {
             </ul>
           </div>
           <div className="footer-column">
-            <h4>ABOUT</h4>
+            <h4 className="bangers-regular">ABOUT</h4>
             <ul>
               <li>
                 <a href="#about">Rick and Morty</a>
@@ -204,28 +197,19 @@ function Home() {
           </div>
         </div>
         <div className="footer-social">
-          <a href="#" aria-label="Facebook">
-            <FaFacebook />
-          </a>
-          <a href="#" aria-label="Twitter">
+          <a href="#" aria-label="X">
             <FaTwitter />
-          </a>
-          <a href="#" aria-label="Instagram">
-            <FaInstagram />
           </a>
           <a href="#" aria-label="LinkedIn">
             <FaLinkedin />
-          </a>
-          <a href="#" aria-label="YouTube">
-            <FaYoutube />
           </a>
         </div>
         <p className="footer-copyright">
           © 2025 Rick and Morty Explorer. All rights reserved. Not affiliated
           with Adult Swim or Warner Bros.
         </p>
-        <p className="footer-made-with">Made with ❤️ by fans</p>
-      </footer>
+        <p className="footer-made-with">Made with ❤️ by a fan</p>
+      </footer> */}
     </div>
   );
 }

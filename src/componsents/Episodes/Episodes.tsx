@@ -125,33 +125,12 @@ function Episodes() {
     fetchEpisodes(1);
   }, []);
 
-  // Intersection Observer for infinite scroll
-  useEffect(() => {
-    // Don't set up observer if filters are active (API might not support pagination with filters well)
-    if (nameFilter || episodeFilter) {
-      return;
+  // Load more episodes
+  const handleLoadMore = () => {
+    if (hasMore && !isLoading) {
+      setPage((prev) => prev + 1);
     }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore && !isLoading) {
-          setPage((prev) => prev + 1);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentTarget = observerTarget.current;
-    if (currentTarget) {
-      observer.observe(currentTarget);
-    }
-
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
-      }
-    };
-  }, [hasMore, isLoading, nameFilter, episodeFilter]);
+  };
 
   // Fetch when page changes
   useEffect(() => {
@@ -272,16 +251,16 @@ function Episodes() {
                 ))}
               </div>
 
-              {/* Infinite Scroll Trigger - Always render when hasMore and no filters */}
-              {hasMore && !nameFilter && !episodeFilter && (
-                <div
-                  ref={observerTarget}
-                  className="load-more-trigger"
-                  style={{ minHeight: "50px" }}
-                >
-                  {isLoading && (
-                    <p className="loading-more">Loading more episodes...</p>
-                  )}
+              {/* Load More Button */}
+              {hasMore && (
+                <div className="load-more-container">
+                  <button
+                    onClick={handleLoadMore}
+                    className="load-more-button"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Loading..." : "Load More Episodes"}
+                  </button>
                 </div>
               )}
             </>
