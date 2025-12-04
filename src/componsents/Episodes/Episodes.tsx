@@ -25,19 +25,34 @@ function Episodes() {
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  // Filter states
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedSeason, setSelectedSeason] = useState<string>("");
+  // Filter states - only name and episode are available in API
+  const [nameFilter, setNameFilter] = useState<string>("");
+  const [episodeFilter, setEpisodeFilter] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("air_date_newest");
 
   const observerTarget = useRef<HTMLDivElement>(null);
 
-  const fetchEpisodes = async (pageNum: number) => {
+  const fetchEpisodes = async (
+    pageNum: number,
+    name: string = "",
+    episode: string = ""
+  ) => {
     setIsLoading(true);
     setIsError(false);
     try {
-      const endpoint = `https://rickandmortyapi.com/api/episode/?page=${pageNum}`;
+      // Build query parameters
+      const params = new URLSearchParams();
+      params.append("page", pageNum.toString());
+      if (name) params.append("name", name);
+      if (episode) params.append("episode", episode);
+
+      const endpoint = `https://rickandmortyapi.com/api/episode/?${params.toString()}`;
       const response = await fetch(endpoint);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch");
+      }
+
       const jsonRes: ApiResponse = await response.json();
 
       if (pageNum === 1) {
@@ -52,28 +67,15 @@ function Episodes() {
       if (pageNum === 1) {
         setEpisodes([]);
       }
+      setHasMore(false);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Apply filters and sorting
+  // Apply sorting only (filtering is done by API)
   useEffect(() => {
     let result = [...episodes];
-
-    // Filter by search query
-    if (searchQuery) {
-      result = result.filter(
-        (ep) =>
-          ep.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          ep.episode.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    // Filter by season
-    if (selectedSeason) {
-      result = result.filter((ep) => ep.episode.startsWith(selectedSeason));
-    }
 
     // Sort episodes
     switch (sortBy) {
@@ -100,13 +102,22 @@ function Episodes() {
     }
 
     setFilteredEpisodes(result);
-  }, [episodes, searchQuery, selectedSeason, sortBy]);
+  }, [episodes, sortBy]);
 
   // Reset filters
   const handleResetFilters = () => {
-    setSearchQuery("");
-    setSelectedSeason("");
+    setNameFilter("");
+    setEpisodeFilter("");
     setSortBy("air_date_newest");
+    setPage(1);
+    fetchEpisodes(1, "", "");
+  };
+
+  // Apply filters - fetch from API when filters change
+  const handleApplyFilters = () => {
+    setPage(1);
+    setEpisodes([]);
+    fetchEpisodes(1, nameFilter, episodeFilter);
   };
 
   // Initial fetch
@@ -116,8 +127,8 @@ function Episodes() {
 
   // Intersection Observer for infinite scroll
   useEffect(() => {
-    // Don't set up observer if filters are active
-    if (searchQuery || selectedSeason) {
+    // Don't set up observer if filters are active (API might not support pagination with filters well)
+    if (nameFilter || episodeFilter) {
       return;
     }
 
@@ -140,16 +151,14 @@ function Episodes() {
         observer.unobserve(currentTarget);
       }
     };
-  }, [hasMore, isLoading, searchQuery, selectedSeason]);
+  }, [hasMore, isLoading, nameFilter, episodeFilter]);
 
   // Fetch when page changes
   useEffect(() => {
     if (page > 1) {
-      fetchEpisodes(page);
+      fetchEpisodes(page, nameFilter, episodeFilter);
     }
   }, [page]);
-
-  console.log("===========>", hasMore && !searchQuery && !selectedSeason);
 
   if (isLoading && episodes.length === 0) {
     return (
@@ -189,37 +198,42 @@ function Episodes() {
         <aside className="filters-sidebar">
           <h2 className="sidebar-title bangers-regular">FILTERS & SORT</h2>
 
-          {/* Search */}
+          {/* Filter by Name */}
           <div className="filter-group">
-            <label className="bangers-regular">Search Episodes</label>
+            <label className="bangers-regular">FILTER BY NAME</label>
             <div className="search-input-wrapper">
               <BiSearchAlt className="search-icon" />
               <input
                 type="text"
-                placeholder="Search by title or code..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by episode name..."
+                value={nameFilter}
+                onChange={(e) => setNameFilter(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && handleApplyFilters()}
                 className="search-input"
               />
             </div>
           </div>
 
-          {/* Filter by Season */}
+          {/* Filter by Episode Code */}
           <div className="filter-group">
-            <label className="bangers-regular">FILTER BY SEASON</label>
-            <select
-              value={selectedSeason}
-              onChange={(e) => setSelectedSeason(e.target.value)}
-              className="filter-select"
-            >
-              <option value="">Select a Season</option>
-              <option value="S01">Season 1</option>
-              <option value="S02">Season 2</option>
-              <option value="S03">Season 3</option>
-              <option value="S04">Season 4</option>
-              <option value="S05">Season 5</option>
-            </select>
+            <label className="bangers-regular">FILTER BY EPISODE CODE</label>
+            <div className="search-input-wrapper">
+              <BiSearchAlt className="search-icon" />
+              <input
+                type="text"
+                placeholder="e.g., S01E01"
+                value={episodeFilter}
+                onChange={(e) => setEpisodeFilter(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && handleApplyFilters()}
+                className="search-input"
+              />
+            </div>
           </div>
+
+          {/* Apply Filters Button */}
+          <button onClick={handleApplyFilters} className="apply-button">
+            Apply Filters
+          </button>
 
           {/* Sort By */}
           <div className="filter-group">
@@ -259,7 +273,7 @@ function Episodes() {
               </div>
 
               {/* Infinite Scroll Trigger - Always render when hasMore and no filters */}
-              {hasMore && !searchQuery && !selectedSeason && (
+              {hasMore && !nameFilter && !episodeFilter && (
                 <div
                   ref={observerTarget}
                   className="load-more-trigger"

@@ -36,14 +36,29 @@ const getEpisodeColor = (id: number): string => {
   return colors[id % colors.length];
 };
 
+// Generate a consistent random episode image based on episode ID
+const getEpisodeImage = (id: number): string => {
+  const images = [
+    "/episode1.png",
+    "/episode2.png",
+    "/episode3.png",
+    "/episode4.png",
+    "/episode5.png",
+    "/episode6.png",
+    "/episode7.png",
+  ];
+  return images[id % images.length];
+};
+
 function Episode({ episode }: iEpisodeProps) {
   const bgColor = getEpisodeColor(episode.id);
+  const episodeImage = getEpisodeImage(episode.id);
 
   return (
     <div className="episode-card">
       {/* Episode Image Placeholder */}
       <div className="episode-image">
-        <img src="/episode.png" alt="episode" />
+        <img src={episodeImage} alt="episode" />
       </div>
 
       {/* Episode Content */}
