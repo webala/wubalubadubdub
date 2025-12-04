@@ -154,11 +154,11 @@ function Home() {
           ABOUT THE RICK AND MORTY EXPLORER
         </h2>
         <p className="about-text">
-          Built by fans for fans, the Rick and Morty Explorer is your ultimate
-          companion for navigating the complex and hilarious universe. We aim to
-          provide accurate and comprehensive information, all wrapped in an
-          interface that captures the irreverent spirit of the show. Get ready
-          for an adventure without the risk of interdimensional parasites!
+          The Rick and Morty Explorer is your ultimate companion for navigating
+          the complex and hilarious universe. It aims to provide accurate and
+          comprehensive information, all wrapped in an interface that captures
+          the irreverent spirit of the show. Get ready for an adventure without
+          the risk of interdimensional parasites!
         </p>
       </section>
 
