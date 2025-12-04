@@ -17,9 +17,21 @@ function Navbar() {
 
   const navLinks = [
     { path: "/", label: "Home", icon: <Home size={18} color="#00d563" /> },
-    { path: "/episodes", label: "Episodes", icon: <Tv size={18} color="#00d563" /> },
-    { path: "/characters", label: "Characters", icon: <Users size={18} color="#00d563" /> },
-    { path: "/locations", label: "Locations", icon: <MapPin size={18} color="#00d563" /> },
+    {
+      path: "/characters",
+      label: "Characters",
+      icon: <Users size={18} color="#00d563" />,
+    },
+    {
+      path: "/locations",
+      label: "Locations",
+      icon: <MapPin size={18} color="#00d563" />,
+    },
+    {
+      path: "/episodes",
+      label: "Episodes",
+      icon: <Tv size={18} color="#00d563" />,
+    },
   ];
 
   return (
@@ -49,9 +61,9 @@ function Navbar() {
         {/* Mobile Menu Toggle */}
         <div className="menu-toggle" onClick={toggleMenu}>
           {isMobileMenuOpen ? (
-            <X className="icon" size={28} />
+            <X className="icon" size={28} color="black"/>
           ) : (
-            <Menu className="icon" size={28} />
+            <Menu className="icon" size={28} color="black"/>
           )}
         </div>
 
@@ -73,7 +85,7 @@ function Navbar() {
               onClick={closeMenu}
             >
               {link.icon}
-              <span>{link.label}</span>
+              <span className="link">{link.label}</span>
             </Link>
           ))}
         </div>
